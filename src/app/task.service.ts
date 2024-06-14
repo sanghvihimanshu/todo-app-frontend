@@ -10,7 +10,7 @@ export class TaskService {
 
   readonly apiUrl
   constructor(private http: HttpClient) { 
-   this.apiUrl = 'http://localhost:8080'; 
+   this.apiUrl = 'https://to-do-app-backend-idaynouqp-himanshus-projects-50839b2c.vercel.app'; 
   }
 
   getTasks(): Observable<Task[]> {  
