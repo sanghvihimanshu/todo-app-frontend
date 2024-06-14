@@ -1,0 +1,31 @@
+   <div class="main-box">
+    <div class="header">
+        <h2>TO-DO APP</h2>
+        <button (click) = "onClickedLogout()">Logout</button>
+    </div>
+    <div class="inputFeild">
+        <input  #taskInput class="task-input" type="text" placeholder="Add your new task" [(ngModel)]="inputTask" (keydown)="onKeydown($event)">
+        <button *ngIf="isAddClick" [class.disabled]="!inputTask" [disabled]="!inputTask"(click) = "displayInputFeild()">Add</button>
+        <button *ngIf="isEditClick "(click)="changeButton()" class="update-button">Update</button> 
+    </div>
+
+    <ul class="todo-list">
+        <li *ngFor="let task of inputTasks" [class.checked]="task.checked" (click)="completedTask(task)" >
+            <div class="task-content">
+                <span [class.line-through]="task.checked">{{ task.description}}</span>
+                <p class="timestamp">{{formatTimestamp(task.timestamp)}}</p>
+            </div>
+
+            <div class="features-icons">
+                <button class="edit-button"  (click)="editTask($event,task)"><i class="fas fa-edit"></i></button>
+                <button class ="delete-button" (click)="removeTask($event,task)"><i class="fas fa-trash"></i></button>
+            </div>
+        </li>   
+    </ul>
+
+    <div class="features">
+        <h4> Please complete your pending {{uncheckedTaskCount}} task</h4>
+        <button [class.disabled]= "inputTasks.length === 0" [disabled]="inputTasks.length === 0" (click)="clearAll()">Clear All</button>
+    </div>
+   
+</div>

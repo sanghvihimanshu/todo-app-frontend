@@ -1,0 +1,26 @@
+<div class="main-box">
+  <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+  <h2>Login</h2>
+  <div class="inputFeild">
+    <form [formGroup]="userForm"  (ngSubmit)="onLoginButtonClicked($event,emailInput.value , pwInput.value)">
+
+      <input #emailInput class="email" type="email" placeholder="Email"  formControlName="email"> 
+      <div class="email-Input" *ngIf="userForm.controls['email'].invalid &&  ( isFormSubmit || userForm.controls['email'].touched || userForm.controls['email'].dirty)">
+          <span *ngIf="userForm.controls['email'].errors?.['required']">This is required</span>
+          <span *ngIf="userForm.controls['email'].errors?.['pattern']">Email feild is incorrect</span>
+      </div>
+      
+      <input #pwInput class="password" type="password" placeholder="Password" formControlName="password">
+      <div class="email-Input" *ngIf="userForm.controls['password'].invalid &&  ( isFormSubmit || userForm.controls['password'].touched || userForm.controls['password'].dirty)">
+          <span *ngIf="userForm.controls['password'].errors?.['required']">This is required</span>
+      </div>
+
+
+      <button type="submit" >Login</button>
+        <p>Don't have an account? <a routerLink="/register">Register</a></p>
+         <!-- <button (click) = "Logout()">Logout</button>  -->
+      </form> 
+    
+  </div>
+</div>
+        

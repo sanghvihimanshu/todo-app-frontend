@@ -1,0 +1,24 @@
+<div class="main-box">
+    <div *ngIf="(errorMessage && emailInput.value && pwInput.value)" class="error-message">{{ errorMessage }}</div>
+    <h2>Register</h2>
+    <div class="inputFeild">
+      <form [formGroup]="userForm">
+
+        <input #emailInput class="email" type="email" placeholder="Email"  formControlName="email"> 
+        <div class="email-Input" *ngIf="userForm.controls['email'].invalid &&  ( isFormSubmit || userForm.controls['email'].touched || userForm.controls['email'].dirty)">
+            <span *ngIf="userForm.controls['email'].errors?.['required']">This is required</span>
+            <span *ngIf="userForm.controls['email'].errors?.['pattern']">Email feild is incorrect</span>
+        </div>
+        
+        <input #pwInput class="password" type="password" placeholder="Password" formControlName="password">
+        <div class="email-Input" *ngIf="userForm.controls['password'].invalid &&  ( isFormSubmit || userForm.controls['password'].touched || userForm.controls['password'].dirty)">
+            <span *ngIf="userForm.controls['password'].errors?.['required']">This is required</span>
+            <span *ngIf="userForm.controls['password'].errors?.['minlength']">Min 4 characters is required</span>
+        </div>
+
+        <button type="button" (click) ="onRegisterButtonClicked(emailInput.value,pwInput.value)">Register</button>
+        <p>Already have an account <a routerLink="/login">Login</a></p>
+        </form>
+      
+    </div>
+</div>
